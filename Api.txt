@@ -1,0 +1,80 @@
+---------Countries:
+
+➔ POST /api/countries
+o Add a country in the database
+o Body: {nume: Str, lat: Double, lon: Double} – obiect
+o Succes: 201 si { id: Int }
+o Error: 400 sau 409
+
+➔ GET /api/countries
+o get all the countries in the database
+o Success: 200 si [ {id: Int, nume: Str, lat: Double, lon: Double}, {...}, ...] – lista de obiecte
+
+➔ PUT /api/countries /:id
+o Modify the country with the given id
+o Body: {id: Int, nume: Str, lat: Double, lon: Double} - obiect
+o Success: 200
+o Error: 400 sau 404
+
+➔ DELETE /api/countries /:id
+o Delete the given country
+o Success: 200
+o Error: 404
+
+-----------Cities:
+
+➔ POST /api/cities
+o Add a city in the database
+o Body: {idTara: Int, nume: Str, lat: Double, lon: Double} - obiect
+o Succes: 201 si { id: Int }
+o Error: 400 sau 409
+
+➔ GET /api/ cities
+o Get all the cities in the database
+o Success: 200 si [ {id: Int, idTara: Int, nume: Str, lat: Double, lon: Double}, {...}, ...] – lista de obiecte
+
+➔ GET /api/ cities /country/:idTara
+o Return all the cities from the given country
+o Success: 200 si [ {id: Int, nume: Str, lat: Double, lon: Double}, {...}, ...] – lista de obiecte
+
+➔ PUT /api/cities/:id
+o Modify the given city
+o Body: {id: Int, idTara: Int, nume: Str, lat: Double, lon: Double} - obiect
+o Success: 200
+o Error: 400 sau 404
+
+➔ DELETE /api/cities/:id
+o Delete the given city
+o Success: 200
+o Error: 404
+
+--------Temperatures:
+
+➔ POST /api/temperatures
+o Add a temperature in the database
+o Body: {idOras: Int, valoare: Double} - obiect
+o Succes: 201 si { id: Int }
+o Error: 400 sau 409
+
+➔ GET /api/temperatures?lat=Double&lon=Double&from=Date&until=Date
+o Return temperatures considering the given parameters, regardless of them missing or not. No param = all temperatures, coordinates = match them, dates form an interval (open or closed)
+o Success: 200 si [ {id: Int, valoare: Double, timestamp: Date}, {...}, ...] – lista de obiecte
+
+➔ GET /api/temperatures /cities/:idOras?from=Date&until=Date
+o Return temperatures for a given city for the given dates, regardless of them missing or not.
+o Success: 200 si [{id: Int, valoare: Double, timestamp: Date}, {...}, ...] – lista de obiecte
+
+➔ GET /api/temperatures /countries/:idTara?from=Date&until=Date
+o Return temperatures for a given country for the given dates, regardless of them missing or not.
+o Success: 200 si [{id: Int, valoare: Double, timestamp: Date}, {...}, ...] – lista de obiecte
+
+➔ PUT /api/temperatures /:id
+o Modify the temperature with the given id
+o Body: {id: Int, idOras: Int, valoare: Double} - obiect
+o Success: 200
+o Error: 400 sau 404
+
+➔ DELETE /api/temperatures /:id
+o Delete the temperature with the given id
+o Success: 200
+o Error: 404
