@@ -1,0 +1,225 @@
+PS V:\facultate\Anul 4\Sem 1\SPRC\Teme\Tema2> docker-compose -f .\tema_2_docker_compose.yml up --build
+Creating network "tema2_db_network" with the default driver
+Creating network "tema2_api_network" with the default driver
+Creating volume "tema2_db_data" with default driver
+Creating volume "tema2_sgbd_data" with default driver
+Pulling db (postgres:12)...
+12: Pulling from library/postgres
+852e50cd189d: Pull complete
+0269cd569193: Pull complete
+879ff0b54097: Pull complete
+3114d3793d45: Pull complete
+0ee7737137c3: Pull complete
+3fff8dbf0e49: Pull complete
+6b78b1e21dd1: Pull complete
+ddecce665bec: Pull complete
+ed463e4ad5d8: Pull complete
+7dd659587aa8: Pull complete
+783da3bac9da: Pull complete
+7eb279ddfee1: Pull complete
+c5700974a2b2: Pull complete
+53a78e432ca3: Pull complete
+Digest: sha256:62ae78ebf6903c47ff40273e1266173d224ee1bc2c000805cc4e0c4470305f57
+Status: Downloaded newer image for postgres:12
+Pulling sgbd (dpage/pgadmin4:)...
+latest: Pulling from dpage/pgadmin4
+cbdbe7a5bc2a: Pulling fs layer
+26ebcd19a4e3: Pulling fs layer
+182f9db0616e: Pulling fs layer
+3636800bcad4: Pulling fs layer
+3cd54696bb82: Pulling fs layer
+3db4ab16d469: Pulling fs layer
+3b27cd706ef8: Pull complete
+bf52a40f8fba: Pull complete
+2f61494593a2: Pull complete
+7221f8962952: Pull complete
+d934a4db0b37: Pull complete
+025ef52453eb: Pull complete
+48cf8aadae3a: Pull complete
+a6684cb79f2a: Pull complete
+95c43f2a03b5: Pull complete
+526937e1aeeb: Pull complete
+1fa273785016: Pull complete
+b320f56bb7e9: Pull complete
+69ee600f8d52: Pull complete
+dc361c65f32d: Pull complete
+Digest: sha256:f287c00312226dbe812e3e27fc4b8c1e1e0752e0305516a7346ece1d85cbf9a6
+Status: Downloaded newer image for dpage/pgadmin4:latest
+Building api
+Step 1/8 : FROM python:3.6
+3.6: Pulling from library/python
+756975cb9c7e: Pull complete
+d77915b4e630: Pull complete
+5f37a0a41b6b: Pull complete
+96b2c1e36db5: Pull complete
+c495e8de12d2: Pull complete
+a79e1025c0fe: Pull complete
+f1f619b13c7c: Pull complete
+1f74591d7ee0: Pull complete
+5ce9e9a2fdaa: Pull complete
+Digest: sha256:eea8761e62da5990ce1fae2d278de877415b15ab5c9f54e0efdd012ff478ed93
+Status: Downloaded newer image for python:3.6
+ ---> bda27a013ab2
+Step 2/8 : COPY requirements.txt /tmp
+ ---> caecbe632eb2
+Step 3/8 : RUN pip install -U setuptools
+ ---> Running in 684582b78c83
+Requirement already satisfied: setuptools in /usr/local/lib/python3.6/site-packages (50.3.2)
+Removing intermediate container 684582b78c83
+ ---> e24df19694a9
+Step 4/8 : RUN pip install -r /tmp/requirements.txt
+ ---> Running in 9926f9114c49
+Collecting datetime
+  Downloading DateTime-4.3-py2.py3-none-any.whl (60 kB)
+Collecting flask
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting psycopg2
+  Downloading psycopg2-2.8.6.tar.gz (383 kB)
+Collecting click>=5.1
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting itsdangerous>=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting Jinja2>=2.10.1
+  Downloading Jinja2-2.11.2-py2.py3-none-any.whl (125 kB)
+Collecting MarkupSafe>=0.23
+  Downloading MarkupSafe-1.1.1-cp36-cp36m-manylinux1_x86_64.whl (27 kB)
+Collecting pytz
+  Downloading pytz-2020.4-py2.py3-none-any.whl (509 kB)
+Collecting Werkzeug>=0.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting zope.interface
+  Downloading zope.interface-5.2.0-cp36-cp36m-manylinux2010_x86_64.whl (236 kB)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.6/site-packages (from zope.interface->datetime->-r /tmp/requirements.txt (line 3)) (50.3.2)
+Building wheels for collected packages: psycopg2
+  Building wheel for psycopg2 (setup.py): started
+  Building wheel for psycopg2 (setup.py): finished with status 'done'
+  Created wheel for psycopg2: filename=psycopg2-2.8.6-cp36-cp36m-linux_x86_64.whl size=462345 sha256=aba57500ea31828dc95d71f3f847fc85d97e89251ae8d943f8c70d843e84f39c
+  Stored in directory: /root/.cache/pip/wheels/cb/74/1b/4b65077db4eb0d85763050e60c5921398d2858945558352dd8
+Successfully built psycopg2
+Installing collected packages: MarkupSafe, zope.interface, Werkzeug, pytz, Jinja2, itsdangerous, click, psycopg2, flask, datetime
+Successfully installed Jinja2-2.11.2 MarkupSafe-1.1.1 Werkzeug-1.0.1 click-7.1.2 datetime-4.3 flask-1.1.2 itsdangerous-1.1.0 psycopg2-2.8.6 pytz-2020.4 zope.interface-5.2.0
+Removing intermediate container 9926f9114c49
+ ---> 229713a5ff71
+Step 5/8 : COPY Server/ /app
+ ---> 25ed1bea20f6
+Step 6/8 : WORKDIR /app
+ ---> Running in 21139a25242f
+Removing intermediate container 21139a25242f
+ ---> 36e6eb5c7fd6
+Step 7/8 : EXPOSE 80
+ ---> Running in 1ffcd9cbc383
+Removing intermediate container 1ffcd9cbc383
+ ---> f81a465461bd
+Step 8/8 : CMD ["python", "server.py"]
+ ---> Running in ed2fb99829d2
+Removing intermediate container ed2fb99829d2
+ ---> 3072ec008fad
+
+Successfully built 3072ec008fad
+Successfully tagged tema2_server:latest
+Creating postgres_db_container ... done
+Creating rest_server           ... done
+Creating pgadmin4_container    ... done
+Attaching to postgres_db_container, rest_server, pgadmin4_container
+postgres_db_container | The files belonging to this database system will be owned by user "postgres".
+postgres_db_container | This user must also own the server process.
+postgres_db_container |
+postgres_db_container | The database cluster will be initialized with locale "en_US.utf8".
+postgres_db_container | The default database encoding has accordingly been set to "UTF8".
+postgres_db_container | The default text search configuration will be set to "english".
+postgres_db_container |
+postgres_db_container | Data page checksums are disabled.
+postgres_db_container |
+postgres_db_container | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres_db_container | creating subdirectories ... ok
+postgres_db_container | selecting dynamic shared memory implementation ... posix
+postgres_db_container | selecting default max_connections ... 100
+postgres_db_container | selecting default shared_buffers ... 128MB
+postgres_db_container | selecting default time zone ... Etc/UTC
+postgres_db_container | creating configuration files ... ok
+postgres_db_container | running bootstrap script ... ok
+rest_server | Traceback (most recent call last):
+rest_server |   File "server.py", line 12, in <module>
+rest_server |     db_connection = psycopg2.connect(host = hostname, port = port, dbname = db_name, user = username, password = password)
+rest_server |   File "/usr/local/lib/python3.6/site-packages/psycopg2/__init__.py", line 127, in connect
+rest_server |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+rest_server | psycopg2.OperationalError: could not connect to server: Connection refused
+rest_server |   Is the server running on host "postgres_db_container" (192.168.208.2) and accepting
+rest_server |   TCP/IP connections on port 5432?
+rest_server |
+postgres_db_container | performing post-bootstrap initialization ... ok
+postgres_db_container | syncing data to disk ... initdb: warning: enabling "trust" authentication for local connections
+postgres_db_container | You can change this by editing pg_hba.conf or using the option -A, or
+postgres_db_container | --auth-local and --auth-host, the next time you run initdb.
+postgres_db_container | ok
+postgres_db_container |
+postgres_db_container |
+postgres_db_container | Success. You can now start the database server using:
+postgres_db_container |
+postgres_db_container |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres_db_container |
+postgres_db_container | waiting for server to start....2020-12-06 15:48:41.565 UTC [47] LOG:  starting PostgreSQL 12.5 (Debian 12.5-1.pgdg100+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 8.3.0-6) 8.3.0, 64-bit
+postgres_db_container | 2020-12-06 15:48:41.570 UTC [47] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_db_container | 2020-12-06 15:48:41.604 UTC [48] LOG:  database system was shut down at 2020-12-06 15:48:41 UTC
+postgres_db_container | 2020-12-06 15:48:41.608 UTC [47] LOG:  database system is ready to accept connections
+postgres_db_container |  done
+postgres_db_container | server started
+postgres_db_container | CREATE DATABASE
+postgres_db_container |
+postgres_db_container |
+postgres_db_container | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init_db.sql
+postgres_db_container | CREATE TABLE
+postgres_db_container | CREATE TABLE
+postgres_db_container | CREATE TABLE
+postgres_db_container |
+postgres_db_container |
+postgres_db_container | 2020-12-06 15:48:41.950 UTC [47] LOG:  received fast shutdown request
+rest_server | Traceback (most recent call last):
+rest_server |   File "server.py", line 12, in <module>
+rest_server |     db_connection = psycopg2.connect(host = hostname, port = port, dbname = db_name, user = username, password = password)
+rest_server |   File "/usr/local/lib/python3.6/site-packages/psycopg2/__init__.py", line 127, in connect
+rest_server |     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+rest_server | psycopg2.OperationalError: could not connect to server: Connection refused
+rest_server |   Is the server running on host "postgres_db_container" (192.168.208.2) and accepting
+rest_server |   TCP/IP connections on port 5432?
+rest_server |
+postgres_db_container | waiting for server to shut down....2020-12-06 15:48:41.960 UTC [47] LOG:  aborting any active transactions
+postgres_db_container | 2020-12-06 15:48:41.961 UTC [47] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres_db_container | 2020-12-06 15:48:41.964 UTC [49] LOG:  shutting down
+postgres_db_container | 2020-12-06 15:48:42.013 UTC [47] LOG:  database system is shut down
+postgres_db_container |  done
+postgres_db_container | server stopped
+postgres_db_container |
+postgres_db_container | PostgreSQL init process complete; ready for start up.
+postgres_db_container |
+postgres_db_container | 2020-12-06 15:48:42.065 UTC [1] LOG:  starting PostgreSQL 12.5 (Debian 12.5-1.pgdg100+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 8.3.0-6) 8.3.0, 64-bit
+postgres_db_container | 2020-12-06 15:48:42.107 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres_db_container | 2020-12-06 15:48:42.107 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres_db_container | 2020-12-06 15:48:42.116 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_db_container | 2020-12-06 15:48:42.138 UTC [74] LOG:  database system was shut down at 2020-12-06 15:48:41 UTC
+postgres_db_container | 2020-12-06 15:48:42.143 UTC [1] LOG:  database system is ready to accept connections
+rest_server exited with code 1
+rest_server |  * Serving Flask app "Tema2_server" (lazy loading)
+rest_server |  * Environment: production
+rest_server |    WARNING: This is a development server. Do not use it in a production deployment.
+rest_server |    Use a production WSGI server instead.
+rest_server |  * Debug mode: on
+rest_server |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+rest_server |  * Restarting with stat
+rest_server |  * Debugger is active!
+rest_server |  * Debugger PIN: 251-809-756
+pgadmin4_container | NOTE: Configuring authentication for SERVER mode.
+pgadmin4_container |
+pgadmin4_container | ----------
+pgadmin4_container | Loading servers with:
+pgadmin4_container | User: tema2@tema2.com
+pgadmin4_container | SQLite pgAdmin config: /var/lib/pgadmin/pgadmin4.db
+pgadmin4_container | ----------
+pgadmin4_container | Added 0 Server Group(s) and 1 Server(s).
+pgadmin4_container | sudo: setrlimit(RLIMIT_CORE): Operation not permitted
+pgadmin4_container | [2020-12-06 15:48:53 +0000] [1] [INFO] Starting gunicorn 19.9.0
+pgadmin4_container | [2020-12-06 15:48:53 +0000] [1] [INFO] Listening at: http://[::]:80 (1)
+pgadmin4_container | [2020-12-06 15:48:53 +0000] [1] [INFO] Using worker: threads
+pgadmin4_container | /usr/local/lib/python3.8/os.py:1023: RuntimeWarning: line buffering (buffering=1) isn't supported in binary mode, the default buffer size will be used
+pgadmin4_container |   return io.open(fd, *args, **kwargs)
+pgadmin4_container | [2020-12-06 15:48:53 +0000] [92] [INFO] Booting worker with pid: 92

@@ -1,0 +1,13 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Tema2 server",
+            "Group": "Servers",
+            "Port": 5432,
+            "Username": "Tema2_user",
+            "Host": "postgres_db_container",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres"
+        }
+    }
+}

@@ -1,0 +1,7221 @@
+{
+	"info": {
+		"_postman_id": "30d78245-4a90-49e7-8779-a48977c680d6",
+		"name": "Tema2_tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Countries",
+			"item": [
+				{
+					"name": "Get_nothing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3804bc8d-361f-4174-bd9f-cec2d4641522",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.eql([]);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce42abd1-0552-4df1-9193-db82c7a619bf",
+								"exec": [
+									"pm.test(\"Add Romania\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(1);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Romania\",\r\n    \"lat\": 45.23,\r\n    \"lon\": 29.28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "21ec6c9d-8561-44c6-a817-45f542e4d5b7",
+								"exec": [
+									"pm.test(\"Add Norvegia\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norvegia\",\r\n    \"lat\": 60.62,\r\n    \"lon\": 61.73\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9873e341-7fda-49fa-a406-78835c0b9056",
+								"exec": [
+									"pm.test(\"Add Grecia\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Grecia\",\r\n    \"lat\": 25.22,\r\n    \"lon\": 24.30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_err1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9301e9d6-7a50-47a4-b3db-d4016c6901af",
+								"exec": [
+									"pm.test(\"Add 100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_err2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d33f9699-8f77-415b-8f86-8c4475881a19",
+								"exec": [
+									"pm.test(\"Add 010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 25.22\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_err3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8b46e1b7-c08c-4b26-a30c-5943dc5c863a",
+								"exec": [
+									"pm.test(\"Add 001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lon\": 24.30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_err4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "63c580d3-e1c8-456e-a67c-bd2c716037c7",
+								"exec": [
+									"pm.test(\"Add 000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_err5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0977312f-b57f-4375-929d-3add4caaf945",
+								"exec": [
+									"pm.test(\"Add 110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"A\",\r\n    \"lat\": 25.22\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_err6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e659729-7c24-4d18-83f8-80b6fba9295e",
+								"exec": [
+									"pm.test(\"Add 101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"A\",\r\n    \"lon\": 24.30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_err7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "044c4ea0-4686-4934-bbc5-2d674f96d68b",
+								"exec": [
+									"pm.test(\"Add 011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 25.22,\r\n    \"lon\": 24.30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_Err_409",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e2df8cb-7c9e-4155-bd8b-efb5d7210769",
+								"exec": [
+									"pm.test(\"Add Grecia\", function(){\r",
+									"    pm.response.to.have.status(409);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Grecia\",\r\n    \"lat\": 28.22,\r\n    \"lon\": 24.30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_type_err1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dbd58367-0023-4ef1-931a-748a11d1698e",
+								"exec": [
+									"pm.test(\"Add 011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\": 12,\r\n    \"lat\": 60.62,\r\n    \"lon\": 61.73\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_type_err2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2cb4d32-abdb-4f48-8ca0-3b110610500f",
+								"exec": [
+									"pm.test(\"Add 011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\": \"Germania\",\r\n    \"lat\": \"hehe\",\r\n    \"lon\": 61.73\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Post_type_err3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7e54d7d7-bf5d-4c24-ab27-fff89237a516",
+								"exec": [
+									"pm.test(\"Add 011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\": \"Germania\",\r\n    \"lat\": 45.23,\r\n    \"lon\": \"hehe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f76def90-9e87-4ab3-820b-f92c92f1d7b0",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const rom = {\r",
+									"    \"id\":1,\r",
+									"    \"nume\":\"Romania\",\r",
+									"    \"lat\": 45.23,\r",
+									"    \"lon\": 29.28\r",
+									"    }\r",
+									"    const nor = {\r",
+									"    \"id\":2,\r",
+									"    \"nume\":\"Norvegia\",\r",
+									"    \"lat\": 60.62,\r",
+									"    \"lon\": 61.73\r",
+									"    }\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"nume\":\"Grecia\",\r",
+									"    \"lat\": 25.22,\r",
+									"    \"lon\": 24.30\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(rom);\r",
+									"    pm.expect(res).to.deep.include(nor);\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c46c175e-116c-4637-9ec8-8605c7925321",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"nume\":\"Grecia\",\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/3",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc1910b9-d45a-4c06-8ec1-00dc146e09a2",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"nume\":\"Grecia\",\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/4",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ca29abf-4150-490b-8852-e367774163a0",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":4,\r\n    \"nume\":\"Greciuta\",\r\n    \"lat\":25.3,\r\n    \"lon\":25.4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/4",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a04b77a0-34a5-43a1-ab03-c28b2939d540",
+								"exec": [
+									"pm.test(\"Add 0000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8a4b9ae-8236-4244-93d5-6ac2b8081d4f",
+								"exec": [
+									"pm.test(\"Add 1000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8fb923d8-e57a-457f-a907-7d4ac090ab21",
+								"exec": [
+									"pm.test(\"Add 0100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Grecia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f0d57c81-baa5-485f-9c7a-030683c25c65",
+								"exec": [
+									"pm.test(\"Add 0010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\":25.1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e1832bc-18cf-4c2f-98e4-026a40b6d989",
+								"exec": [
+									"pm.test(\"Add 0001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac2fe1bd-1fff-4580-ac93-da93325b4f78",
+								"exec": [
+									"pm.test(\"Add 1100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"nume\":\"Grecia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf0b239d-00e7-4de3-ade8-d02bb7062587",
+								"exec": [
+									"pm.test(\"Add 1010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"lat\":25.1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f62d7242-108d-43ef-af09-2f3cca2799ef",
+								"exec": [
+									"pm.test(\"Add 1001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1cfc07ad-5dc4-4db5-825e-6348d319f12a",
+								"exec": [
+									"pm.test(\"Add 0110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Grecia\",\r\n    \"lat\":25.1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "24027023-cd0b-46dc-b320-2ddfc88fd537",
+								"exec": [
+									"pm.test(\"Add 0101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Grecia\",\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d06d4d06-0513-4b17-9d13-6e1613973e6f",
+								"exec": [
+									"pm.test(\"Add 0011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ce2e289-f024-4e64-b7b2-7e98b1c34cef",
+								"exec": [
+									"pm.test(\"Add 1110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"nume\":\"Grecia\",\r\n    \"lat\":25.1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_13",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8531bd27-a35d-4073-a79c-6a8f2ebfdad6",
+								"exec": [
+									"pm.test(\"Add 1101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"nume\":\"Grecia\",\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_14",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d5f9d87-37a4-4d61-9cf0-36f17a71061f",
+								"exec": [
+									"pm.test(\"Add 1011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_Err_400_15",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "494509bd-4fdc-4da9-a48a-a0f9af91d186",
+								"exec": [
+									"pm.test(\"Add 0111\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Grecia\",\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_type_err_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4678938-38f4-4f0a-8069-2c0b7de16baa",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2.45,\r\n    \"nume\":\"Germania\",\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/3",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_type_err_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ecf5a9c5-2935-4947-a298-7cfa17a36dd6",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nume\": 324,\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/3",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_type_err_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3371327a-098b-465d-bb6a-45b69ea1124b",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nume\":\"Germania\",\r\n    \"lat\": \"Guten tag\",\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/3",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_type_err_4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2930385a-2e59-4405-8a34-4ae3787085bd",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2.45,\r\n    \"nume\":\"Germania\",\r\n    \"lat\":25.1,\r\n    \"lon\": \"hyaaaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/3",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_after_put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e89d2652-bf6a-4c9b-b771-feaa3d4f872d",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const rom = {\r",
+									"    \"id\":1,\r",
+									"    \"nume\":\"Romania\",\r",
+									"    \"lat\": 45.23,\r",
+									"    \"lon\": 29.28\r",
+									"    }\r",
+									"    const nor = {\r",
+									"    \"id\":2,\r",
+									"    \"nume\":\"Norvegia\",\r",
+									"    \"lat\": 60.62,\r",
+									"    \"lon\": 61.73\r",
+									"    }\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"nume\":\"Grecia\",\r",
+									"    \"lat\":25.1,\r",
+									"    \"lon\":25.2\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(rom);\r",
+									"    pm.expect(res).to.deep.include(nor);\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Romania",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3dc14e2-046a-46a0-ad3d-4a6de9791e14",
+								"exec": [
+									"pm.test(\"Add 0000\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Romania_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0fdcec6f-d3a0-4568-ba50-acb221c9df24",
+								"exec": [
+									"pm.test(\"Add 0000\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_after_delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "634c4644-c0b9-4192-89b3-ba46b313cbb5",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const nor = {\r",
+									"    \"id\":2,\r",
+									"    \"nume\":\"Norvegia\",\r",
+									"    \"lat\": 60.62,\r",
+									"    \"lon\": 61.73\r",
+									"    }\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"nume\":\"Grecia\",\r",
+									"    \"lat\":25.1,\r",
+									"    \"lon\":25.2\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(nor);\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Add_Romania_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57654cee-fe46-4474-ad8e-bec5fe466413",
+								"exec": [
+									"pm.test(\"Add Romania\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(5);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Romania\",\r\n    \"lat\": 45.23,\r\n    \"lon\": 29.28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Add_Belgium",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2acc57d7-be09-47a9-b9d7-8e181223e357",
+								"exec": [
+									"pm.test(\"Add Romania\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(6);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Belgia\",\r\n    \"lat\": 45.23,\r\n    \"lon\": 29.28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Countries_Put_409",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c4432e5-71ff-43b1-8325-3d9bc8de235c",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(409);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":3,\r\n    \"nume\":\"Romania\",\r\n    \"lat\":25.1,\r\n    \"lon\":25.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/3",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_after_repost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7cd42a5-bb23-432b-b451-1c05a356a36f",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const rom = {\r",
+									"    \"id\":5,\r",
+									"    \"nume\":\"Romania\",\r",
+									"    \"lat\": 45.23,\r",
+									"    \"lon\": 29.28\r",
+									"    }\r",
+									"    const nor = {\r",
+									"    \"id\":2,\r",
+									"    \"nume\":\"Norvegia\",\r",
+									"    \"lat\": 60.62,\r",
+									"    \"lon\": 61.73\r",
+									"    }\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"nume\":\"Grecia\",\r",
+									"    \"lat\":25.1,\r",
+									"    \"lon\":25.2\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(rom);\r",
+									"    pm.expect(res).to.deep.include(nor);\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cities",
+			"item": [
+				{
+					"name": "Get_nothing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e08de94f-65bd-4de0-a88d-6e81309d32ab",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.eql([]);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aec6e11b-a1bf-4ef2-a876-2d1d98684bcd",
+								"exec": [
+									"pm.test(\"Add Norv city1\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(1);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9fb3b292-62be-4a71-91b0-e67426100042",
+								"exec": [
+									"pm.test(\"Add Norv city2\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city2\",\r\n    \"lat\": 18.45,\r\n    \"lon\": 22.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9bfd55b-7c5e-4d5d-bab4-8e46f7e1ddd2",
+								"exec": [
+									"pm.test(\"Add Grec City\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 3,\r\n    \"nume\": \"Grec_city\",\r\n    \"lat\": 20.85,\r\n    \"lon\": 20.15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "298df504-a56a-4054-8c33-fef85f840211",
+								"exec": [
+									"pm.test(\"Add Bucharest\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(4);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 5,\r\n    \"nume\": \"Bucharest\",\r\n    \"lat\": 43.85,\r\n    \"lon\": 23.67\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04597b04-0b99-4795-b91c-03c09b5c82f9",
+								"exec": [
+									"pm.test(\"Add Bucharest\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(5);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 5,\r\n    \"nume\": \"Cluj\",\r\n    \"lat\": 55.26,\r\n    \"lon\": 22.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65016f3f-defd-4c00-ab81-5e888821ecb5",
+								"exec": [
+									"pm.test(\"Add Bucharest\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(6);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 6,\r\n    \"nume\": \"Bruxelles\",\r\n    \"lat\": 59.26,\r\n    \"lon\": 23.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f06d9111-88e4-4c68-bbb0-4263d28a53a5",
+								"exec": [
+									"pm.test(\"Add 0000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "39af2c16-be57-46b8-a7cb-205b7299e71d",
+								"exec": [
+									"pm.test(\"Add 1000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3585f00b-34ca-4e06-877a-be0e61c17dec",
+								"exec": [
+									"pm.test(\"Add 0100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0229eaad-60ea-4580-94ec-76db1c3441ea",
+								"exec": [
+									"pm.test(\"Add 0010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "872556e4-bd73-455c-86e9-e982537ac46f",
+								"exec": [
+									"pm.test(\"Add 0001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "33619aba-db79-465e-8b04-8c405af52aa9",
+								"exec": [
+									"pm.test(\"Add 1100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aefdb2e1-7a93-46ff-85e6-4154f77dbf9f",
+								"exec": [
+									"pm.test(\"Add 1010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45a88a34-eca2-4412-9128-59f2628c0469",
+								"exec": [
+									"pm.test(\"Add 1001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb69330e-43c2-402d-a7f2-1da94fd07023",
+								"exec": [
+									"pm.test(\"Add 0110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city\",\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cdd2a3ee-8dfe-4d29-8559-c4c646026b25",
+								"exec": [
+									"pm.test(\"Add 0101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "afd2f0a1-d244-43d7-8e9d-72e3c8aa7e8c",
+								"exec": [
+									"pm.test(\"Add 0011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3d5d2c17-dbb2-441c-ba3a-746768a6b770",
+								"exec": [
+									"pm.test(\"Add 1110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city\",\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err13",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e4ad4f1-16e8-4e40-9303-1086a5e1385f",
+								"exec": [
+									"pm.test(\"Add 1101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err14",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d798acdd-b857-4dd0-b981-3941ac42d5d8",
+								"exec": [
+									"pm.test(\"Add 1011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_err15",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c2841476-de33-40f2-a6a6-0aa0f3128d14",
+								"exec": [
+									"pm.test(\"Add 0111\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_Err_409",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0c0f6048-12f9-45ab-9ec5-3e63758250ee",
+								"exec": [
+									"pm.test(\"Add 409\", function(){\r",
+									"    pm.response.to.have.status(409);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_type_err_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df705534-178d-4ebc-bb51-bea0bf54c224",
+								"exec": [
+									"pm.test(\"Type1\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": \"id-u_ala_bun\",\r\n    \"nume\":\"Norv_city\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_type_err_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c691969e-955d-497f-aef8-efac0067dfc8",
+								"exec": [
+									"pm.test(\"Type2\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\": 3,\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_type_err_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "306d836e-d952-40da-a45f-54a0c5fa8396",
+								"exec": [
+									"pm.test(\"Type3\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city3\",\r\n    \"lat\": \"uuuuuquiba\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_type_err_4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e186e05-aa31-4cc4-ab1e-48c90717dc58",
+								"exec": [
+									"pm.test(\"Type4\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city3\",\r\n    \"lat\": 16.45,\r\n    \"lon\": \"chiar credeai ca merge\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Post_no_country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1b92fd81-f995-4231-8328-2d092f519e7d",
+								"exec": [
+									"pm.test(\"Add Norv city1\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 8,\r\n    \"nume\":\"Vatican_city\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3d7e3f3-1c3b-4da9-9fc7-23102fdfb4fe",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const nor1 = {\r",
+									"    \"id\":1,\r",
+									"    \"idTara\": 2,\r",
+									"    \"nume\":\"Norv_city\",\r",
+									"    \"lat\": 16.45,\r",
+									"    \"lon\": 29.45\r",
+									"    }\r",
+									"    const nor2 = {\r",
+									"    \"id\":2,\r",
+									"    \"idTara\": 2,\r",
+									"    \"nume\":\"Norv_city2\",\r",
+									"    \"lat\": 18.45,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"idTara\": 3,\r",
+									"    \"nume\": \"Grec_city\",\r",
+									"    \"lat\": 20.85,\r",
+									"    \"lon\": 20.15\r",
+									"    }\r",
+									"    const ro1 = {\r",
+									"    \"id\":4,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Bucharest\",\r",
+									"    \"lat\": 43.85,\r",
+									"    \"lon\": 23.67\r",
+									"    }\r",
+									"    const ro2 = {\r",
+									"    \"id\":5,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Cluj\",\r",
+									"    \"lat\": 55.26,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(nor1);\r",
+									"    pm.expect(res).to.deep.include(nor2);\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"    pm.expect(res).to.deep.include(ro1);\r",
+									"    pm.expect(res).to.deep.include(ro2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_rom",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3dfe39d7-9135-4303-9ae3-3f268a8236e4",
+								"exec": [
+									"pm.test(\"Get Romania\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const ro1 = {\r",
+									"    \"id\":4,\r",
+									"    \"nume\": \"Bucharest\",\r",
+									"    \"lat\": 43.85,\r",
+									"    \"lon\": 23.67\r",
+									"    }\r",
+									"    const ro2 = {\r",
+									"    \"id\":5,\r",
+									"    \"nume\": \"Cluj\",\r",
+									"    \"lat\": 55.26,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(ro1);\r",
+									"    pm.expect(res).to.deep.include(ro2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/country/5",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"country",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_invalid_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ea6ed2b-9527-4dad-a91a-ae575ea54013",
+								"exec": [
+									"pm.test(\"Get invalid id\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.eql([]);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/country/555",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"country",
+								"555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8103170-0e73-4fac-9c27-f05e520ae706",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0048dab6-a93a-4c54-b1a2-a43cdabf9d1e",
+								"exec": [
+									"pm.test(\"Invalid id\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_409",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2996b186-5367-4258-bfc3-7c7f7669eb8e",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(409);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city2\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "711fc938-68e7-4f24-afca-66c0f1fce08f",
+								"exec": [
+									"pm.test(\"Put Grecia\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ec5a8b8-4739-4caa-8fd9-d2076fdbeb42",
+								"exec": [
+									"pm.test(\"Missing 00000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "402f5b04-51bc-4dac-a9be-c059ba5faa3c",
+								"exec": [
+									"pm.test(\"Missing 10000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b341c751-1616-4d30-8fde-90ba24c36a49",
+								"exec": [
+									"pm.test(\"Missing 01000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e852345c-fafd-4b58-98aa-c7b8370ac618",
+								"exec": [
+									"pm.test(\"Missing 00100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "39e7406f-0e81-4509-b194-5d1fa1f59b1e",
+								"exec": [
+									"pm.test(\"Missing 00010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ecde9ab-6905-490d-b81d-f62dfe708464",
+								"exec": [
+									"pm.test(\"Missing 00001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "14a18aef-2a86-46d9-b8d2-e387a7ebe39a",
+								"exec": [
+									"pm.test(\"Missing 11000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed9d463f-56a1-4feb-b3f8-409cdcb16e0c",
+								"exec": [
+									"pm.test(\"Missing 10100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"nume\":\"Norv_city1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4412799-7013-47d4-9f15-3f4dca81c1ee",
+								"exec": [
+									"pm.test(\"Missing 10010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1de01f2-8314-4064-b723-a8d0dbe0278a",
+								"exec": [
+									"pm.test(\"Missing 10001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3d857483-cc66-49b1-9043-0de2121c6e9c",
+								"exec": [
+									"pm.test(\"Missing 01100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4149d31e-d26f-4c05-9633-132a508a816c",
+								"exec": [
+									"pm.test(\"Missing 01010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "762b6f5b-570e-4376-a32d-180dc46352dc",
+								"exec": [
+									"pm.test(\"Missing 01001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_13",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "90b50655-6623-471a-a852-c5c3908728a0",
+								"exec": [
+									"pm.test(\"Missing 00110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_14",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7a5f611a-eeeb-4fcb-8be9-4c162bf89b64",
+								"exec": [
+									"pm.test(\"Missing 00101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city1\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_15",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9941ea0-56b3-4a06-a36f-cb830b6c1726",
+								"exec": [
+									"pm.test(\"Missing 00011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_16",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a237809-d4b9-4333-99ea-b4104b317ecb",
+								"exec": [
+									"pm.test(\"Missing 11100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_17",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ec248df-64d8-4a8e-944d-6f7f83d7c085",
+								"exec": [
+									"pm.test(\"Missing 11010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2,\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_18",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d984b8e0-e953-44dc-a88f-0e7bf1533132",
+								"exec": [
+									"pm.test(\"Missing 11001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_19",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a6bc5658-6237-4813-a003-644f4648fcf9",
+								"exec": [
+									"pm.test(\"Missing 10110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_20",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0d147980-1bcd-4f9a-b9b0-894291ad378c",
+								"exec": [
+									"pm.test(\"Missing 10101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_21",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "001b5051-5e1c-4f20-8256-dd3fd92579b2",
+								"exec": [
+									"pm.test(\"Missing 10011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_22",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe2b00bb-fc13-46c7-b9d3-0f57fb7a95b9",
+								"exec": [
+									"pm.test(\"Missing 01110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_23",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e841b45-5f3e-403c-8476-22ab35b82b30",
+								"exec": [
+									"pm.test(\"Missing 01101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_24",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b38e586-23cf-4698-82db-b7f54e00a2dd",
+								"exec": [
+									"pm.test(\"Missing 01011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_25",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "210ca221-1005-4e78-b948-8e5de86c5e9e",
+								"exec": [
+									"pm.test(\"Missing 00111\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_26",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1047e613-79fc-47c8-a8ab-6ca8981c0ce9",
+								"exec": [
+									"pm.test(\"Missing 11110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_27",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "15a1c4ad-bc65-4642-9858-922ee3f9ab17",
+								"exec": [
+									"pm.test(\"Missing 11101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_28",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "40f5debf-76bf-43a3-b84b-f50b46112c97",
+								"exec": [
+									"pm.test(\"Missing 11011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idTara\": 2,\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_29",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0766a4d0-0356-48b5-a370-e5360657ca4f",
+								"exec": [
+									"pm.test(\"Missing 10111\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_missing_30",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a458b1e5-3db2-48a3-bbd3-f3e80d4bde2f",
+								"exec": [
+									"pm.test(\"Missing 01111\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "871d8a00-c912-493e-896a-a76a3d365079",
+								"exec": [
+									"pm.test(\"Err type1\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"hue\",\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_type2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cbaca292-9c19-4783-877a-48fb13b4e05b",
+								"exec": [
+									"pm.test(\"Err type2\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idTara\": \"hue\",\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_type3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c14f61c-87de-4898-aed3-ae9730b8ba49",
+								"exec": [
+									"pm.test(\"Err type3\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idTara\": 2,\r\n    \"nume\": 1,\r\n    \"lat\": 16.45,\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_type4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65943a09-88c4-4cc3-8a87-4f455e0f73ef",
+								"exec": [
+									"pm.test(\"Err type4\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": \"hue\",\r\n    \"lon\": 29.45\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cities_Put_err_400_type5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "85d4eb51-5323-48a3-823d-301bd81cf326",
+								"exec": [
+									"pm.test(\"Err type5\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idTara\": 2,\r\n    \"nume\":\"Norv_city1\",\r\n    \"lat\": 16.45,\r\n    \"lon\": \"hue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_after_put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42b9f6e2-4890-4de3-9695-01d7e4ac0e83",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const nor1 = {\r",
+									"    \"id\":1,\r",
+									"    \"idTara\": 2,\r",
+									"    \"nume\":\"Norv_city1\",\r",
+									"    \"lat\": 16.45,\r",
+									"    \"lon\": 29.45\r",
+									"    }\r",
+									"    const nor2 = {\r",
+									"    \"id\":2,\r",
+									"    \"idTara\": 2,\r",
+									"    \"nume\":\"Norv_city2\",\r",
+									"    \"lat\": 18.45,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"idTara\": 3,\r",
+									"    \"nume\": \"Grec_city\",\r",
+									"    \"lat\": 20.85,\r",
+									"    \"lon\": 20.15\r",
+									"    }\r",
+									"    const ro1 = {\r",
+									"    \"id\":4,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Bucharest\",\r",
+									"    \"lat\": 43.85,\r",
+									"    \"lon\": 23.67\r",
+									"    }\r",
+									"    const ro2 = {\r",
+									"    \"id\":5,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Cluj\",\r",
+									"    \"lat\": 55.26,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(nor1);\r",
+									"    pm.expect(res).to.deep.include(nor2);\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"    pm.expect(res).to.deep.include(ro1);\r",
+									"    pm.expect(res).to.deep.include(ro2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_nor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dbf671c3-b041-4842-9ea6-96fa31e7a80d",
+								"exec": [
+									"pm.test(\"Get all norway\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const nor1 = {\r",
+									"    \"id\":1,\r",
+									"    \"nume\":\"Norv_city1\",\r",
+									"    \"lat\": 16.45,\r",
+									"    \"lon\": 29.45\r",
+									"    }\r",
+									"    const nor2 = {\r",
+									"    \"id\":2,\r",
+									"    \"nume\":\"Norv_city2\",\r",
+									"    \"lat\": 18.45,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(nor1);\r",
+									"    pm.expect(res).to.deep.include(nor2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/country/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"country",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_nor1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e351dce8-32c8-497d-aab2-aadd45539ce7",
+								"exec": [
+									"pm.test(\"Delete nor1\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_nor1_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d04a0285-57a8-42dc-aa01-622fa8aa051d",
+								"exec": [
+									"pm.test(\"Delete nor1\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_after_delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d54ef804-7b9a-4b12-a24c-f5e271ecfcb5",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const nor2 = {\r",
+									"    \"id\":2,\r",
+									"    \"idTara\": 2,\r",
+									"    \"nume\":\"Norv_city2\",\r",
+									"    \"lat\": 18.45,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"idTara\": 3,\r",
+									"    \"nume\": \"Grec_city\",\r",
+									"    \"lat\": 20.85,\r",
+									"    \"lon\": 20.15\r",
+									"    }\r",
+									"    const ro1 = {\r",
+									"    \"id\":4,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Bucharest\",\r",
+									"    \"lat\": 43.85,\r",
+									"    \"lon\": 23.67\r",
+									"    }\r",
+									"    const ro2 = {\r",
+									"    \"id\":5,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Cluj\",\r",
+									"    \"lat\": 55.26,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(nor2);\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"    pm.expect(res).to.deep.include(ro1);\r",
+									"    pm.expect(res).to.deep.include(ro2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Norvegia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e82e968d-dee7-406f-bb51-ad4c0158a9fa",
+								"exec": [
+									"pm.test(\"Delete Norway\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Norvegia_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "355d767a-4253-496f-be19-fe167f173ce5",
+								"exec": [
+									"pm.test(\"Delete Norway\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_after_delete_country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16de009f-5c41-401e-a94f-0463172859b5",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const gre = {\r",
+									"    \"id\":3,\r",
+									"    \"idTara\": 3,\r",
+									"    \"nume\": \"Grec_city\",\r",
+									"    \"lat\": 20.85,\r",
+									"    \"lon\": 20.15\r",
+									"    }\r",
+									"    const ro1 = {\r",
+									"    \"id\":4,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Bucharest\",\r",
+									"    \"lat\": 43.85,\r",
+									"    \"lon\": 23.67\r",
+									"    }\r",
+									"    const ro2 = {\r",
+									"    \"id\":5,\r",
+									"    \"idTara\": 5,\r",
+									"    \"nume\": \"Cluj\",\r",
+									"    \"lat\": 55.26,\r",
+									"    \"lon\": 22.45\r",
+									"    }\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.deep.include(gre);\r",
+									"    pm.expect(res).to.deep.include(ro1);\r",
+									"    pm.expect(res).to.deep.include(ro2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_nor_after_delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0e7f8b4-52b6-4752-b69d-0bca1254e5c0",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.eql([]);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/country/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"country",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_invallid_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8d0a656e-38fb-4a6d-ac3d-46443d3ac9c3",
+								"exec": [
+									"pm.test(\"Delete Norway\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Temperatures",
+			"item": [
+				{
+					"name": "Get_nothing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6fb0f3d8-5572-4c49-b7ec-a5f4bb0213ff",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.eql([]);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_nothing_cities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "77a6e29c-d977-4d49-9147-16db68b85392",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.eql([]);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/cities/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_nothing_countries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "351c09b9-70bb-42d8-bfa5-92cf670c4b00",
+								"exec": [
+									"pm.test(\"Get nothing\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.eql([]);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/countries/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"countries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e0bc12d2-cf5e-40a2-a14b-76ea4d6791d5",
+								"exec": [
+									"pm.test(\"Add Buc temp1\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(1);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":4,\r\n    \"valoare\":24.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bdc2d360-020d-41e7-b5ac-410ed4d661c8",
+								"exec": [
+									"pm.test(\"Add Buc temp2\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":4,\r\n    \"valoare\":25.1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7658883-822a-4994-ae82-2a87c1ccfa26",
+								"exec": [
+									"pm.test(\"Add Buc temp1\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":5,\r\n    \"valoare\":26.6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ceab832e-840b-4585-8ef4-fbe410ed12fe",
+								"exec": [
+									"pm.test(\"Add Buc temp1\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(4);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":4,\r\n    \"valoare\":24.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1366d07-5997-45bb-9020-49afcdb997f5",
+								"exec": [
+									"pm.test(\"Add Buc temp1\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(5);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":5,\r\n    \"valoare\":23.1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ef9a2d7-d52a-48ed-94ea-74e135b9ea27",
+								"exec": [
+									"pm.test(\"Add Buc temp1\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(6);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":5,\r\n    \"valoare\":24.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a3f4979-ccf1-4a22-a26b-7b3ddac6a681",
+								"exec": [
+									"pm.test(\"Add Buc temp1\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res.id).to.eq(7);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":6,\r\n    \"valoare\":24.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "03947abd-c810-4857-8068-3bcba55427d5",
+								"exec": [
+									"pm.test(\"Add Buc temp1\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":9,\r\n    \"valoare\":24.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_400_missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f4493ee7-3b0f-48af-93db-21d6ac6ed101",
+								"exec": [
+									"pm.test(\"Missing 00\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_400_missing_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7888d6b3-deeb-4834-8197-63f3fdc3eda5",
+								"exec": [
+									"pm.test(\"Missing 10\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_400_missing_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3dad486-7b33-43ad-ada0-a27a1040d045",
+								"exec": [
+									"pm.test(\"Missing 01\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valoare\":24.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_400_type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "203a977a-cb68-4ad8-bb85-ea811658d707",
+								"exec": [
+									"pm.test(\"Type1\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":\"hue\",\r\n    \"valoare\":24.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Temperatures_Post_400_type2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3213de04-443d-48aa-8c8b-337e7ee763f4",
+								"exec": [
+									"pm.test(\"Type1\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":5,\r\n    \"valoare\":\"hue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3185928f-5f05-4142-8210-376960f78554",
+								"exec": [
+									"pm.test(\"Put Temp 1\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idOras\":4,\r\n    \"valoare\":30.01\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9a8a4946-ac81-46c3-88bf-1d9716966e7e",
+								"exec": [
+									"pm.test(\"Put Temp 404\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":10,\r\n    \"idOras\":4,\r\n    \"valoare\":30.02\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/10",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "26836f0b-1b09-4709-a4e3-ebe589481729",
+								"exec": [
+									"pm.test(\"Put id mismatch\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idOras\":4,\r\n    \"valoare\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81fecc30-ce91-4fd5-89f0-8d21393b35fb",
+								"exec": [
+									"pm.test(\"Put missing 000\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9c66833c-01de-4834-8837-69ec3b5f758e",
+								"exec": [
+									"pm.test(\"Put missing 100\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a2f13bbc-e575-4df6-b436-0ded58b8a16b",
+								"exec": [
+									"pm.test(\"Put missing 010\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3e2a388b-6f2f-4ca1-9453-e3ee4c52bce4",
+								"exec": [
+									"pm.test(\"Put missing 001\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valoare\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e4bde298-e90a-4231-b06a-baa839fc47ff",
+								"exec": [
+									"pm.test(\"Put missing 110\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idOras\":4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dc9e5658-f6aa-4a22-b013-4629e08fe9f9",
+								"exec": [
+									"pm.test(\"Put missing 101\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"valoare\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf4d7179-6a22-4265-8813-e81cf7457ed4",
+								"exec": [
+									"pm.test(\"Put missing 011\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idOras\":4,\r\n    \"valoare\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_type_1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a2ec9218-95ec-4e54-82df-e10525c55039",
+								"exec": [
+									"pm.test(\"Put type 1\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"hue\",\r\n    \"idOras\":4,\r\n    \"valoare\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_type_2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4fae48c5-2e55-4764-b44c-9211b7515542",
+								"exec": [
+									"pm.test(\"Put type 2\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idOras\":\"hue\",\r\n    \"valoare\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put_temp_400_type_3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "914eb3ab-ca72-4e90-89f5-5c3fbc4bf07e",
+								"exec": [
+									"pm.test(\"Put type 3\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"idOras\":4,\r\n    \"valoare\":\"hue\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "41793178-8ec8-4710-900c-d038614fcb0a",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.have.lengthOf(7);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_bucharest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f43a6b43-9ddb-4334-9f39-51625ad60a58",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"     pm.expect(res).to.have.lengthOf(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/cities/4",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"cities",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_romania",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "653fe18c-95f3-4901-8716-5b9b7870f289",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"     pm.expect(res).to.have.lengthOf(6);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/countries/5",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"countries",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delte_temp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa4ce573-1f92-405a-b66f-3ed5df1290a3",
+								"exec": [
+									"pm.test(\"Delete temp 1\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delte_temp_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "effac4d2-a95a-4d53-999e-b1f3943fe0af",
+								"exec": [
+									"pm.test(\"Delete temp 1\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_bucharest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a82385cd-857c-42a8-9d2c-07a307274fd3",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"     pm.expect(res).to.have.lengthOf(2);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/cities/4",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"cities",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_bucharest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e0a4739e-9bb5-4ec6-9af6-dd3736cd9d76",
+								"exec": [
+									"pm.test(\"Delete nor1\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/cities/4",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"cities",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_bucharest_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ddca5f34-b368-490d-9b30-cf82cce6f668",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"     pm.expect(res).to.have.lengthOf(0);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/cities/4",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"cities",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_romania_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4f7ddb7a-8348-446c-950d-ba254e31eb3b",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"     pm.expect(res).to.have.lengthOf(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures/countries/5",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures",
+								"countries",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Belgia",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93fb2a01-ea38-46dc-a518-cebfac93b0af",
+								"exec": [
+									"pm.test(\"Delete Belgium\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/countries/6",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"countries",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f1b77890-9c13-464a-9851-5ce42fdac284",
+								"exec": [
+									"pm.test(\"Get all\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"    const res = pm.response.json();\r",
+									"     pm.expect(res).to.have.lengthOf(3);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/temperatures",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"temperatures"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
