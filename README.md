@@ -13,4 +13,5 @@ App testing was done with Postman. The test suite is present in json format.
 
 As you can see, the service is fully functional:
 
+![image](https://user-images.githubusercontent.com/48775757/133327851-ebcf606b-f93a-45f1-b0b7-8a99634404a3.png)
 
